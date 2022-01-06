@@ -4,35 +4,54 @@
     box-sizing: border-box;
 }
 
+body {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+body h1 {
+    color: blue;
+    justify-self: center;
+}
+
 main {
     display: flex;
     flex-flow: row wrap;
-    margin: 20%;
-    border: solid blue;
-    height: 600px;
-    border-radius: 2%;
-    justify-content: space-between;
+    border: solid slateblue;
+    height: 650px;
+    width: 700px;
+    border-radius: 1%;
+    justify-content: space-evenly;
 }
 
-.highscores {
-    flex-basis: fit-content;
-}
-
-.timer {
-    flex-basis: fit-content;
-}
-
-.questions {
+main div {
     display: flex;
-    justify-content: center;
+    flex-flow: column wrap;
     flex-basis: 100%;
-    height: 90%;
+    height: 560px;
+    align-items: center;
+    margin: 8px;
 }
 
-.questions span {
-    font-weight: bold;
+#btn-start {
+    height: 30px;
+    width: fit-content;
+    font-size: larger;
+    color: blue;
 }
 
-button {
-    display: block;
+#btn-next {
+    height: 30px;
+    width: fit-content;
+    font-size: larger;
+    color: green;
+}
+
+.btn-option {
+    height: 30px;
+    width: fit-content;
+    align-self: baseline;
+    color: blue;
 }
