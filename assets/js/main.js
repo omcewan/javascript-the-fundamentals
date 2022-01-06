@@ -6,4 +6,14 @@ var questions = [
     "Sample Question 5"
 ]
 
+var questionOptions = [
+    {a: "this is the option for a"},
+    {b: "this is the option for b"},
+    {c: "this is the option for c"},
+    {d: "this is the option for d"}
+]
+
+var newQuestion = document.querySelector("span");
+console.log(newQuestion);
+// newQuestion.textContent = questions[2];
 

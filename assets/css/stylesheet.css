@@ -32,3 +32,7 @@ main {
 .questions span {
     font-weight: bold;
 }
+
+button {
+    display: block;
+}
