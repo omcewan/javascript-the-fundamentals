@@ -1,4 +1,4 @@
-// array variable of questions
+// an array consisting of questions
 var javaScriptQuestions = [
   "Question 1: Which of the following is correct?",
   "Question 2: Can you pass an anonymous function as an argument to another function?",
@@ -8,28 +8,58 @@ var javaScriptQuestions = [
   "Question 6: Which of the following function of Array object adds one or more elements to the front of an array and returns the new length of the array?",
 ];
 
-// will be an array or an object variable with the options for the quiz
+// an array consisting of the answers
 var javaScriptAnswers = [
-  {
-    Q1A: [
-      "JavaScript is a lightweight, interpreted programming language.",
-      "JavaScript has object-oriented capabilities that allows you to bulid interactivity into otherwise static HTML pages.",
-      "The generalpurpose core of the language has been embedded in Netscape, Internet Explorer, and other web browsers.",
-      "All of the above.",
-    ],
-  },
-  { Q2A: ["true", "false", "This question", "will change"] },
-  { Q3A: ["append()", "concat()", "attach()", "None of the above"] },
-  { Q4A: ["toUpperCase()", "toUpper()", "changeCase()", "None of the above"] },
-  { Q5A: ["toSource()", "valueOf()", "toString()", "None of the above"] },
-  { Q6A: ["unshift()", "sort()", "splice()", "toString()"] },
+  ["JavaScript is a lightweight, interpreted programming language.","JavaScript has object-oriented capabilities that allows you to bulid interactivity into otherwise static HTML pages.","The general purpose core of the language has been embedded in Netscape, Internet Explorer, and other web browsers.","All of the above.",],
+  ["True", "False", "This question", "will change"],
+  ["append()", "concat()", "attach()", "None of the above"],
+  ["toUpperCase()", "toUpper()", "changeCase()", "None of the above"],
+  ["toSource()", "valueOf()", "toString()", "None of the above"],
+  ["unshift()", "sort()", "splice()", "toString()"]
 ];
 
 //this is how we will access the elements in the questions array!
 console.log(javaScriptQuestions[0]);
 
 // this is how we will access element in the answers array! I might change the internal elements to an array and remove the object!
-console.log(javaScriptAnswers[0].Q1A[0]);
+console.log(javaScriptAnswers[0][0]);
+
+var optionAEl = document.createElement("button");
+optionAEl.setAttribute("class", "btn-option");
+
+var optionBEl = document.createElement("button");
+optionBEl.setAttribute("class", "btn-option");
+
+var optionCEl = document.createElement("button");
+optionCEl.setAttribute("class", "btn-option");
+
+var optionDEl = document.createElement("button");
+optionDEl.setAttribute("class", "btn-option");
+
+// variables for buttons put theses in an array to all for adding
+var optionArr = [optionAEl, optionBEl, optionCEl, optionDEl];
+
+//this is the selector for the element where the questions will be displayed
+var quizQuestionEl = document.querySelector(".questions");
+console.log(quizQuestionEl);
+
+// this div will have the questions popup
+var questionEl = document.createElement("p");
+console.log(questionEl);
+
+// selects the start button
+var startButtonEl = document.querySelector("#btn-start");
+
+//this will add a next question button
+var nextQuestionBtn = document.createElement("button");
+console.log(nextQuestionBtn);
+
+//add a class to the next question button
+nextQuestionBtn.setAttribute("id", "btn-next");
+console.log(nextQuestionBtn);
+
+//add context to the button
+nextQuestionBtn.textContent = "Next Question";
 
 // function to go through questions
 function chooseQuestion() {
@@ -37,6 +67,8 @@ function chooseQuestion() {
     case "":
       questionEl.textContent = javaScriptQuestions[0];
       addOptionBtn();
+      quizQuestionEl.appendChild(nextQuestionBtn);
+      console.log(quizQuestionEl);
       break;
     case javaScriptQuestions[0]:
       questionEl.textContent = javaScriptQuestions[1];
@@ -63,73 +95,92 @@ function chooseQuestion() {
   }
 }
 
-// variables for buttons put theses in an array to all for adding
-var optionAEl = document.createElement("button");
-optionAEl.setAttribute("class", "btn-option");
-
-var optionBEl = document.createElement("button");
-optionBEl.setAttribute("class", "btn-option");
-
-var optionCEl = document.createElement("button");
-optionCEl.setAttribute("class", "btn-option");
-
-var optionDEl = document.createElement("button");
-optionDEl.setAttribute("class", "btn-option");
-
-var optionArr = [optionAEl, optionBEl, optionCEl, optionDEl];
-
 // function to add option
 function addOptionBtn() {
-  for (let i = 0; i < optionArr.length; i++) {
-    quizQuestionEl.appendChild(optionArr[i]);
+  switch(questionEl.textContent) {
+    case javaScriptQuestions[0]:
+      optionArr[0].textContent = javaScriptAnswers[0][0];
+      quizQuestionEl.appendChild(optionArr[0]);
+      optionArr[1].textContent = javaScriptAnswers[0][1];
+      quizQuestionEl.appendChild(optionArr[1]);
+      optionArr[2].textContent = javaScriptAnswers[0][2];
+      quizQuestionEl.appendChild(optionArr[2]);
+      optionArr[3].textContent = javaScriptAnswers[0][3];
+      quizQuestionEl.appendChild(optionArr[3]);
+      quizQuestionEl.appendChild(nextQuestionBtn);
+      break;
+    case javaScriptQuestions[1]:
+      optionArr[0].textContent = javaScriptAnswers[1][0];
+      quizQuestionEl.appendChild(optionArr[0]);
+      optionArr[1].textContent = javaScriptAnswers[1][1];
+      quizQuestionEl.appendChild(optionArr[1]);
+      optionArr[2].textContent = javaScriptAnswers[1][2];
+      quizQuestionEl.appendChild(optionArr[2]);
+      optionArr[3].textContent = javaScriptAnswers[1][3];
+      quizQuestionEl.appendChild(optionArr[3]);
+      quizQuestionEl.appendChild(nextQuestionBtn);
+      break;
+    case javaScriptQuestions[2]:
+      optionArr[0].textContent = javaScriptAnswers[2][0];
+      quizQuestionEl.appendChild(optionArr[0]);
+      optionArr[1].textContent = javaScriptAnswers[2][1];
+      quizQuestionEl.appendChild(optionArr[1]);
+      optionArr[2].textContent = javaScriptAnswers[2][2];
+      quizQuestionEl.appendChild(optionArr[2]);
+      optionArr[3].textContent = javaScriptAnswers[2][3];
+      quizQuestionEl.appendChild(optionArr[3]);
+      quizQuestionEl.appendChild(nextQuestionBtn);
+      break;
+    case javaScriptQuestions[3]:
+      optionArr[0].textContent = javaScriptAnswers[3][0];
+      quizQuestionEl.appendChild(optionArr[0]);
+      optionArr[1].textContent = javaScriptAnswers[3][1];
+      quizQuestionEl.appendChild(optionArr[1]);
+      optionArr[2].textContent = javaScriptAnswers[3][2];
+      quizQuestionEl.appendChild(optionArr[2]);
+      optionArr[3].textContent = javaScriptAnswers[3][3];
+      quizQuestionEl.appendChild(optionArr[3]);
+      quizQuestionEl.appendChild(nextQuestionBtn);
+      break;
+    case javaScriptQuestions[4]:
+      optionArr[0].textContent = javaScriptAnswers[4][0];
+      quizQuestionEl.appendChild(optionArr[0]);
+      optionArr[1].textContent = javaScriptAnswers[4][1];
+      quizQuestionEl.appendChild(optionArr[1]);
+      optionArr[2].textContent = javaScriptAnswers[4][2];
+      quizQuestionEl.appendChild(optionArr[2]);
+      optionArr[3].textContent = javaScriptAnswers[4][3];
+      quizQuestionEl.appendChild(optionArr[3]);
+      quizQuestionEl.appendChild(nextQuestionBtn);
+      break;
+    case javaScriptQuestions[5]:
+      optionArr[0].textContent = javaScriptAnswers[5][0];
+      quizQuestionEl.appendChild(optionArr[0]);
+      optionArr[1].textContent = javaScriptAnswers[5][1];
+      quizQuestionEl.appendChild(optionArr[1]);
+      optionArr[2].textContent = javaScriptAnswers[5][2];
+      quizQuestionEl.appendChild(optionArr[2]);
+      optionArr[3].textContent = javaScriptAnswers[5][3];
+      quizQuestionEl.appendChild(optionArr[3]);
+      quizQuestionEl.appendChild(nextQuestionBtn);
+      break;
   }
 }
-
-//this is the selector for the element where the questions will be displayed
-var quizQuestionEl = document.querySelector(".questions");
-console.log(quizQuestionEl);
-
-// this div will have the questions popup
-var questionEl = document.createElement("p");
-console.log(questionEl);
-
-// place the content in element
-// quizElement.textContent = javaScriptQuestions[0];
-// console.log(element)
 
 // used to add the question to DOM, this can potentially be added to the start button event
 function initialQuestion() {
   //chooses the first question
   chooseQuestion();
-
   //appends the questionElement
   quizQuestionEl.appendChild(questionEl);
-  console.log(quizQuestionEl);
-
+  // add the different choices
   addOptionBtn();
-
-  quizQuestionEl.appendChild(nextQuestionBtn);
-  console.log(quizQuestionEl);
-
+  // remove the start button
   quizQuestionEl.removeChild(startButtonEl);
 }
 
-// selects the start button
-var startButtonEl = document.querySelector("#btn-start");
-
 // start game by adding first question and removing start button
 startButtonEl.addEventListener("click", initialQuestion);
-
-//this will add a next question button
-var nextQuestionBtn = document.createElement("button");
-console.log(nextQuestionBtn);
-
-//add a class to the next question button
-nextQuestionBtn.setAttribute("id", "btn-next");
-console.log(nextQuestionBtn);
-
-//add context to the button
-nextQuestionBtn.textContent = "Next Question";
 
 //bring up the next question
 nextQuestionBtn.addEventListener("click", chooseQuestion);

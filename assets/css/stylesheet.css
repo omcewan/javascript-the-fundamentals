@@ -12,8 +12,10 @@ body {
 }
 
 body h1 {
-    color: blue;
+    color: slateblue;
     justify-self: center;
+    margin: 10px;
+    padding: 20px;
 }
 
 main {
@@ -35,11 +37,15 @@ main div {
     margin: 8px;
 }
 
+.questions p {
+    font-size: 24px;
+}
+
 #btn-start {
     height: 30px;
     width: fit-content;
     font-size: larger;
-    color: blue;
+    color: slateblue;
 }
 
 #btn-next {
@@ -50,8 +56,9 @@ main div {
 }
 
 .btn-option {
-    height: 30px;
-    width: fit-content;
-    align-self: baseline;
-    color: blue;
+    height: 40px;
+    width: -webkit-fill-available;
+    color: black;
+    font: unset;
+    margin: 6px;
 }
