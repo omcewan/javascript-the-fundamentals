@@ -61,6 +61,11 @@ endQuizEl.textContent = "Game Over! Here is how you did!";
 
 var userNameEl = document.createElement("input");
 userNameEl.setAttribute("type", "text");
+userNameEl.setAttribute("value", "Your Name");
+userNameEl.setAttribute("id", "user-name");
+
+var submitBtnEl = document.createElement("input");
+submitBtnEl.setAttribute("type", "submit");
 
 var nextQuestionBtnEl = document.createElement("button");
 nextQuestionBtnEl.setAttribute("id", "btn-next");
@@ -69,6 +74,9 @@ nextQuestionBtnEl.textContent = "Next Question";
 var endButtonEl = document.createElement("button");
 endButtonEl.setAttribute("id", "btn-end");
 endButtonEl.textContent = "End Quiz";
+
+var userName
+
 
 /* choose the question to display when the next button is clicked. the option buttons are added after the
 question was chosen */
@@ -175,7 +183,18 @@ function endQuiz() {
   quizQuestionEl.appendChild(endQuizEl);
   quizQuestionEl.appendChild(displayScoreEl);
   // quizQuestionEl.removeChild(endButtonEl);
-  // quizQuestionEl.appendChild(userNameEl);
+  quizQuestionEl.appendChild(userNameEl);
+  quizQuestionEl.appendChild(submitBtnEl);
+}
+
+var saveTasks = function() {
+  localStorage.setItem(userName, JSON.stringify(yourScore));
+}
+
+submitBtnEl.onclick = () => {
+  userName = document.getElementById("user-name").value;
+  console.log(userName);
+  saveTasks();
 }
 
 startButtonEl.addEventListener("click", initialQuestion);
@@ -217,7 +236,7 @@ optionBtnBEl.onclick = () => {
       setTimeout(chooseQuestion, 500);
       break;
     case javaScriptQuestions[5]:
-      optionBtnAEl.setAttribute("class", "incorrect-choice");
+      optionBtnBEl.setAttribute("class", "incorrect-choice");
       setTimeout(endQuiz, 500);
     default:
       optionBtnBEl.setAttribute("class", "incorrect-choice");
@@ -228,7 +247,7 @@ optionBtnBEl.onclick = () => {
 optionBtnCEl.onclick = () => {
   switch (questionEl.textContent) {
     case javaScriptQuestions[5]:
-      optionBtnAEl.setAttribute("class", "incorrect-choice");
+      optionBtnCEl.setAttribute("class", "incorrect-choice");
       setTimeout(endQuiz, 500);
     default:
       optionBtnCEl.setAttribute("class", "incorrect-choice");
@@ -245,10 +264,12 @@ optionBtnDEl.onclick = () => {
       setTimeout(chooseQuestion, 500);
       break;
     case javaScriptQuestions[5]:
-      optionBtnAEl.setAttribute("class", "incorrect-choice");
+      optionBtnDEl.setAttribute("class", "incorrect-choice");
       setTimeout(endQuiz, 500);
     default:
       optionBtnDEl.setAttribute("class", "incorrect-choice");
       setTimeout(chooseQuestion, 500);
   }
 };
+
+
