@@ -1,7 +1,7 @@
 // an array consisting of questions
 var javaScriptQuestions = [
   "Question 1: Which of the following is correct?",
-  "Question 2: Can you pass an anonymous function as an argument to another function?",
+  "Question 2: Which of the following type of variable is visible only within a function where it is defined?",
   "Question 3: Which built-in method combines the text of two strings and returns a new string?",
   "Question 4: Which built-in method returns the calling string value converted to upper case?",
   "Question 5: Which of the following function of Boolean object returns the primitive value of the Boolean object?",
@@ -11,12 +11,25 @@ var javaScriptQuestions = [
 // an array consisting of the answers
 var javaScriptAnswers = [
   ["JavaScript is a lightweight, interpreted programming language.","JavaScript has object-oriented capabilities that allows you to bulid interactivity into otherwise static HTML pages.","The general purpose core of the language has been embedded in Netscape, Internet Explorer, and other web browsers.","All of the above.",],
-  ["True", "False", "This question", "will change"],
+  ["Gobal Variable", "Local Variable", "Both of the Above", "None of the Above"],
   ["append()", "concat()", "attach()", "None of the above"],
   ["toUpperCase()", "toUpper()", "changeCase()", "None of the above"],
   ["toSource()", "valueOf()", "toString()", "None of the above"],
   ["unshift()", "sort()", "splice()", "toString()"]
 ];
+
+// object answer key
+var answerKey = {
+  Q1: javaScriptAnswers[0][3],
+  Q2: javaScriptAnswers[1][1],
+  Q3: javaScriptAnswers[2][1],
+  Q4: javaScriptAnswers[3][0],
+  Q5: javaScriptAnswers[4][0],
+  Q6: javaScriptAnswers[5][0],
+}
+
+// check the answer key
+console.log(answerKey.Q1);
 
 //this is how we will access the elements in the questions array!
 console.log(javaScriptQuestions[0]);
@@ -178,6 +191,7 @@ function initialQuestion() {
   // remove the start button
   quizQuestionEl.removeChild(startButtonEl);
 }
+
 
 // start game by adding first question and removing start button
 startButtonEl.addEventListener("click", initialQuestion);
