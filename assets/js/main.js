@@ -1,4 +1,3 @@
-// an array consisting of questions
 var javaScriptQuestions = [
   "Question 1: Which of the following is correct?",
   "Question 2: Which of the following type of variable is visible only within a function where it is defined?",
@@ -8,80 +7,77 @@ var javaScriptQuestions = [
   "Question 6: Which of the following function of Array object adds one or more elements to the front of an array and returns the new length of the array?",
 ];
 
-// an array consisting of the answers
-var javaScriptAnswers = [
-  ["JavaScript is a lightweight, interpreted programming language.","JavaScript has object-oriented capabilities that allows you to bulid interactivity into otherwise static HTML pages.","The general purpose core of the language has been embedded in Netscape, Internet Explorer, and other web browsers.","All of the above.",],
-  ["Gobal Variable", "Local Variable", "Both of the Above", "None of the Above"],
-  ["append()", "concat()", "attach()", "None of the above"],
-  ["toUpperCase()", "toUpper()", "changeCase()", "None of the above"],
-  ["toSource()", "valueOf()", "toString()", "None of the above"],
-  ["unshift()", "sort()", "splice()", "toString()"]
-];
+var javaScriptAnswers = {
+  A1: [
+    "JavaScript is a lightweight, interpreted programming language.",
+    "JavaScript has object-oriented capabilities that allows you to bulid interactivity into otherwise static HTML pages.",
+    "The general purpose core of the language has been embedded in Netscape, Internet Explorer, and other web browsers.",
+    "All of the above.",
+  ],
+  A2: [
+    "Gobal Variable",
+    "Local Variable",
+    "Both of the Above",
+    "None of the Above",
+  ],
+  A3: ["append()", "concat()", "attach()", "None of the above"],
+  A4: ["toUpperCase()", "toUpper()", "changeCase()", "None of the above"],
+  A5: ["toSource()", "valueOf()", "toString()", "None of the above"],
+  A6: ["unshift()", "sort()", "splice()", "toString()"],
+};
 
-// object answer key
 var answerKey = {
-  Q1: javaScriptAnswers[0][3],
-  Q2: javaScriptAnswers[1][1],
-  Q3: javaScriptAnswers[2][1],
-  Q4: javaScriptAnswers[3][0],
-  Q5: javaScriptAnswers[4][0],
-  Q6: javaScriptAnswers[5][0],
-}
+  Q1: javaScriptAnswers.A1[3],
+  Q2: javaScriptAnswers.A2[1],
+  Q3: javaScriptAnswers.A3[1],
+  Q4: javaScriptAnswers.A4[0],
+  Q5: javaScriptAnswers.A5[0],
+  Q6: javaScriptAnswers.A6[0],
+};
 
-// check the answer key
-console.log(answerKey.Q1);
+var yourScore = 0;
 
-//this is how we will access the elements in the questions array!
-console.log(javaScriptQuestions[0]);
+var optionBtnAEl = document.createElement("button");
+optionBtnAEl.setAttribute("class", "btn-option");
+var optionBtnBEl = document.createElement("button");
+optionBtnBEl.setAttribute("class", "btn-option");
+var optionBtnCEl = document.createElement("button");
+optionBtnCEl.setAttribute("class", "btn-option");
+var optionBtnDEl = document.createElement("button");
+optionBtnDEl.setAttribute("class", "btn-option");
+var optionBtnArr = [optionBtnAEl, optionBtnBEl, optionBtnCEl, optionBtnDEl];
 
-// this is how we will access element in the answers array! I might change the internal elements to an array and remove the object!
-console.log(javaScriptAnswers[0][0]);
-
-var optionAEl = document.createElement("button");
-optionAEl.setAttribute("class", "btn-option");
-
-var optionBEl = document.createElement("button");
-optionBEl.setAttribute("class", "btn-option");
-
-var optionCEl = document.createElement("button");
-optionCEl.setAttribute("class", "btn-option");
-
-var optionDEl = document.createElement("button");
-optionDEl.setAttribute("class", "btn-option");
-
-// variables for buttons put theses in an array to all for adding
-var optionArr = [optionAEl, optionBEl, optionCEl, optionDEl];
-
-//this is the selector for the element where the questions will be displayed
 var quizQuestionEl = document.querySelector(".questions");
-console.log(quizQuestionEl);
 
-// this div will have the questions popup
 var questionEl = document.createElement("p");
-console.log(questionEl);
 
-// selects the start button
 var startButtonEl = document.querySelector("#btn-start");
 
-//this will add a next question button
-var nextQuestionBtn = document.createElement("button");
-console.log(nextQuestionBtn);
+var displayScoreEl = document.createElement("p");
+displayScoreEl.textContent = `${yourScore}`;
 
-//add a class to the next question button
-nextQuestionBtn.setAttribute("id", "btn-next");
-console.log(nextQuestionBtn);
+var endQuizEl = document.createElement("p");
+endQuizEl.textContent = "Game Over! Here is how you did!";
 
-//add context to the button
-nextQuestionBtn.textContent = "Next Question";
+var userNameEl = document.createElement("input");
+userNameEl.setAttribute("type", "text");
 
-// function to go through questions
+var nextQuestionBtnEl = document.createElement("button");
+nextQuestionBtnEl.setAttribute("id", "btn-next");
+nextQuestionBtnEl.textContent = "Next Question";
+
+var endButtonEl = document.createElement("button");
+endButtonEl.setAttribute("id", "btn-end");
+endButtonEl.textContent = "End Quiz";
+
+/* choose the question to display when the next button is clicked. the option buttons are added after the
+question was chosen */
 function chooseQuestion() {
   switch (questionEl.textContent) {
     case "":
       questionEl.textContent = javaScriptQuestions[0];
       addOptionBtn();
-      quizQuestionEl.appendChild(nextQuestionBtn);
-      console.log(quizQuestionEl);
+      //quizQuestionEl.appendChild(nextQuestionBtnEl);
       break;
     case javaScriptQuestions[0]:
       questionEl.textContent = javaScriptQuestions[1];
@@ -103,98 +99,156 @@ function chooseQuestion() {
       questionEl.textContent = javaScriptQuestions[5];
       addOptionBtn();
       break;
-    default:
-      alert("No more questions!");
   }
 }
 
-// function to add option
+// add the text to the different option buttons. each button is add based on the text of the question
 function addOptionBtn() {
-  switch(questionEl.textContent) {
+  switch (questionEl.textContent) {
     case javaScriptQuestions[0]:
-      optionArr[0].textContent = javaScriptAnswers[0][0];
-      quizQuestionEl.appendChild(optionArr[0]);
-      optionArr[1].textContent = javaScriptAnswers[0][1];
-      quizQuestionEl.appendChild(optionArr[1]);
-      optionArr[2].textContent = javaScriptAnswers[0][2];
-      quizQuestionEl.appendChild(optionArr[2]);
-      optionArr[3].textContent = javaScriptAnswers[0][3];
-      quizQuestionEl.appendChild(optionArr[3]);
-      quizQuestionEl.appendChild(nextQuestionBtn);
+      for (let i = 0; i < javaScriptAnswers.A1.length; i++) {
+        optionBtnArr[i].textContent = javaScriptAnswers.A1[i];
+        optionBtnArr[i].setAttribute("class", "btn-option");
+        quizQuestionEl.appendChild(optionBtnArr[i]);
+      }
+      //quizQuestionEl.appendChild(nextQuestionBtnEl);
       break;
     case javaScriptQuestions[1]:
-      optionArr[0].textContent = javaScriptAnswers[1][0];
-      quizQuestionEl.appendChild(optionArr[0]);
-      optionArr[1].textContent = javaScriptAnswers[1][1];
-      quizQuestionEl.appendChild(optionArr[1]);
-      optionArr[2].textContent = javaScriptAnswers[1][2];
-      quizQuestionEl.appendChild(optionArr[2]);
-      optionArr[3].textContent = javaScriptAnswers[1][3];
-      quizQuestionEl.appendChild(optionArr[3]);
-      quizQuestionEl.appendChild(nextQuestionBtn);
+      for (let i = 0; i < javaScriptAnswers.A2.length; i++) {
+        optionBtnArr[i].textContent = javaScriptAnswers.A2[i];
+        optionBtnArr[i].setAttribute("class", "btn-option");
+        quizQuestionEl.appendChild(optionBtnArr[i]);
+      }
+      //quizQuestionEl.appendChild(nextQuestionBtnEl);
       break;
     case javaScriptQuestions[2]:
-      optionArr[0].textContent = javaScriptAnswers[2][0];
-      quizQuestionEl.appendChild(optionArr[0]);
-      optionArr[1].textContent = javaScriptAnswers[2][1];
-      quizQuestionEl.appendChild(optionArr[1]);
-      optionArr[2].textContent = javaScriptAnswers[2][2];
-      quizQuestionEl.appendChild(optionArr[2]);
-      optionArr[3].textContent = javaScriptAnswers[2][3];
-      quizQuestionEl.appendChild(optionArr[3]);
-      quizQuestionEl.appendChild(nextQuestionBtn);
+      for (let i = 0; i < javaScriptAnswers.A3.length; i++) {
+        optionBtnArr[i].textContent = javaScriptAnswers.A3[i];
+        optionBtnArr[i].setAttribute("class", "btn-option");
+        quizQuestionEl.appendChild(optionBtnArr[i]);
+      }
+      //quizQuestionEl.appendChild(nextQuestionBtnEl);
       break;
     case javaScriptQuestions[3]:
-      optionArr[0].textContent = javaScriptAnswers[3][0];
-      quizQuestionEl.appendChild(optionArr[0]);
-      optionArr[1].textContent = javaScriptAnswers[3][1];
-      quizQuestionEl.appendChild(optionArr[1]);
-      optionArr[2].textContent = javaScriptAnswers[3][2];
-      quizQuestionEl.appendChild(optionArr[2]);
-      optionArr[3].textContent = javaScriptAnswers[3][3];
-      quizQuestionEl.appendChild(optionArr[3]);
-      quizQuestionEl.appendChild(nextQuestionBtn);
+      for (let i = 0; i < javaScriptAnswers.A4.length; i++) {
+        optionBtnArr[i].textContent = javaScriptAnswers.A4[i];
+        optionBtnArr[i].setAttribute("class", "btn-option");
+        quizQuestionEl.appendChild(optionBtnArr[i]);
+      }
+      //quizQuestionEl.appendChild(nextQuestionBtnEl);
       break;
     case javaScriptQuestions[4]:
-      optionArr[0].textContent = javaScriptAnswers[4][0];
-      quizQuestionEl.appendChild(optionArr[0]);
-      optionArr[1].textContent = javaScriptAnswers[4][1];
-      quizQuestionEl.appendChild(optionArr[1]);
-      optionArr[2].textContent = javaScriptAnswers[4][2];
-      quizQuestionEl.appendChild(optionArr[2]);
-      optionArr[3].textContent = javaScriptAnswers[4][3];
-      quizQuestionEl.appendChild(optionArr[3]);
-      quizQuestionEl.appendChild(nextQuestionBtn);
+      for (let i = 0; i < javaScriptAnswers.A5.length; i++) {
+        optionBtnArr[i].textContent = javaScriptAnswers.A5[i];
+        optionBtnArr[i].setAttribute("class", "btn-option");
+        quizQuestionEl.appendChild(optionBtnArr[i]);
+      }
+      //quizQuestionEl.appendChild(nextQuestionBtnEl);
       break;
     case javaScriptQuestions[5]:
-      optionArr[0].textContent = javaScriptAnswers[5][0];
-      quizQuestionEl.appendChild(optionArr[0]);
-      optionArr[1].textContent = javaScriptAnswers[5][1];
-      quizQuestionEl.appendChild(optionArr[1]);
-      optionArr[2].textContent = javaScriptAnswers[5][2];
-      quizQuestionEl.appendChild(optionArr[2]);
-      optionArr[3].textContent = javaScriptAnswers[5][3];
-      quizQuestionEl.appendChild(optionArr[3]);
-      quizQuestionEl.appendChild(nextQuestionBtn);
+      for (let i = 0; i < javaScriptAnswers.A6.length; i++) {
+        optionBtnArr[i].textContent = javaScriptAnswers.A6[i];
+        optionBtnArr[i].setAttribute("class", "btn-option");
+        quizQuestionEl.appendChild(optionBtnArr[i]);
+      }
+      //quizQuestionEl.removeChild(nextQuestionBtnEl);
+      // quizQuestionEl.appendChild(endButtonEl);
       break;
+    default:
   }
 }
 
 // used to add the question to DOM, this can potentially be added to the start button event
 function initialQuestion() {
-  //chooses the first question
   chooseQuestion();
-  //appends the questionElement
   quizQuestionEl.appendChild(questionEl);
-  // add the different choices
   addOptionBtn();
-  // remove the start button
   quizQuestionEl.removeChild(startButtonEl);
 }
 
+function endQuiz() {
+  quizQuestionEl.removeChild(questionEl);
+  quizQuestionEl.removeChild(optionBtnAEl);
+  quizQuestionEl.removeChild(optionBtnBEl);
+  quizQuestionEl.removeChild(optionBtnCEl);
+  quizQuestionEl.removeChild(optionBtnDEl);
+  quizQuestionEl.appendChild(endQuizEl);
+  quizQuestionEl.appendChild(displayScoreEl);
+  // quizQuestionEl.removeChild(endButtonEl);
+  // quizQuestionEl.appendChild(userNameEl);
+}
 
-// start game by adding first question and removing start button
 startButtonEl.addEventListener("click", initialQuestion);
 
-//bring up the next question
-nextQuestionBtn.addEventListener("click", chooseQuestion);
+nextQuestionBtnEl.addEventListener("click", chooseQuestion);
+
+// questionEl.addEventListener("click", chooseQuestion);
+
+// endButtonEl.addEventListener("click", endQuiz);
+
+optionBtnAEl.onclick = () => {
+  switch (questionEl.textContent) {
+    case javaScriptQuestions[3]:
+    case javaScriptQuestions[4]:
+      optionBtnAEl.setAttribute("class", "correct-choice");
+      yourScore += 10;
+      displayScoreEl.textContent = `${yourScore}`;
+      setTimeout(chooseQuestion, 500);
+      break;
+    case javaScriptQuestions[5]:
+      optionBtnAEl.setAttribute("class", "correct-choice");
+      yourScore += 10;
+      displayScoreEl.textContent = `${yourScore}`;
+      setTimeout(endQuiz, 500);
+      break;
+    default:
+      optionBtnAEl.setAttribute("class", "incorrect-choice");
+      setTimeout(chooseQuestion, 500);
+  }
+};
+
+optionBtnBEl.onclick = () => {
+  switch (questionEl.textContent) {
+    case javaScriptQuestions[1]:
+    case javaScriptQuestions[2]:
+      optionBtnBEl.setAttribute("class", "correct-choice");
+      yourScore += 10;
+      displayScoreEl.textContent = `${yourScore}`;
+      setTimeout(chooseQuestion, 500);
+      break;
+    case javaScriptQuestions[5]:
+      optionBtnAEl.setAttribute("class", "incorrect-choice");
+      setTimeout(endQuiz, 500);
+    default:
+      optionBtnBEl.setAttribute("class", "incorrect-choice");
+      setTimeout(chooseQuestion, 500);
+  }
+};
+
+optionBtnCEl.onclick = () => {
+  switch (questionEl.textContent) {
+    case javaScriptQuestions[5]:
+      optionBtnAEl.setAttribute("class", "incorrect-choice");
+      setTimeout(endQuiz, 500);
+    default:
+      optionBtnCEl.setAttribute("class", "incorrect-choice");
+      setTimeout(chooseQuestion, 500);
+  }
+};
+
+optionBtnDEl.onclick = () => {
+  switch (questionEl.textContent) {
+    case javaScriptQuestions[0]:
+      optionBtnDEl.setAttribute("class", "correct-choice");
+      yourScore += 10;
+      displayScoreEl.textContent = `${yourScore}`;
+      setTimeout(chooseQuestion, 500);
+      break;
+    case javaScriptQuestions[5]:
+      optionBtnAEl.setAttribute("class", "incorrect-choice");
+      setTimeout(endQuiz, 500);
+    default:
+      optionBtnDEl.setAttribute("class", "incorrect-choice");
+      setTimeout(chooseQuestion, 500);
+  }
+};
