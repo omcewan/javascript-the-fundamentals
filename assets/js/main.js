@@ -193,7 +193,6 @@ function saveHighScores() {
 
 submitBtnEl.onclick = () => {
   userName = document.getElementById("user-name").value;
-  console.log(userName);
   saveHighScores();
 };
 
@@ -203,14 +202,19 @@ highScoreBtnEl.onclick = () => {
     quizQuestionEl.removeChild(quizQuestionEl.firstChild);
   }
   var displayScoreEl = document.createElement("ul");
-  // displayScoreEl.textContent = "High Scores"
-  quizQuestionEl.appendChild(displayScoreEl)
+  displayScoreEl.textContent = "No Scores To Display!"
+  quizQuestionEl.appendChild(displayScoreEl);
+
   var newHighScoreEl = document.createElement("li");
+  console.log(localStorage.getItem(userName));
+ 
   for (let i = 0; i < Object.keys(localStorage).length; i++) {
+    displayScoreEl.textContent = ""
     userName = Object.keys(localStorage)[i];
     newHighScoreEl.textContent = userName + ": " + localStorage.getItem(userName);
     displayScoreEl.innerHTML += " <li>" + newHighScoreEl.textContent + "</li>"
   }
+  
 }
 
 startButtonEl.addEventListener("click", initialQuestion);
