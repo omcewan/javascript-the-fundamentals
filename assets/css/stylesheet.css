@@ -42,9 +42,14 @@ main h2 {
   color: slateblue;
 }
 
-.highscore {
+#highscores {
   position: relative;
-  right: 150px;
+  right: 166px;
+  width: fit-content;
+  height: 40px;
+  font-size: 20px;
+  margin: 4px;
+  color: slateblue;
 }
 
 .timer {
@@ -109,4 +114,9 @@ main h2 {
   width: 200px;
   font-size: 24px;
   margin: 4px;
+}
+
+li {
+    font-size: 24px;
+    color: slateblue;
 }

@@ -37,6 +37,8 @@ var answerKey = {
 
 var yourScore = 0;
 
+var userName;
+
 var optionBtnAEl = document.createElement("button");
 optionBtnAEl.setAttribute("class", "btn-option");
 var optionBtnBEl = document.createElement("button");
@@ -59,9 +61,11 @@ displayScoreEl.textContent = `${yourScore}`;
 var endQuizEl = document.createElement("p");
 endQuizEl.textContent = "Game Over! Here is how you did!";
 
+var highScoreBtnEl = document.querySelector("#highscores");
+
 var userNameEl = document.createElement("input");
 userNameEl.setAttribute("type", "text");
-userNameEl.setAttribute("value", "Your Name");
+userNameEl.setAttribute("placeholder", "Your Name");
 userNameEl.setAttribute("id", "user-name");
 
 var submitBtnEl = document.createElement("input");
@@ -74,8 +78,6 @@ nextQuestionBtnEl.textContent = "Next Question";
 var endButtonEl = document.createElement("button");
 endButtonEl.setAttribute("id", "btn-end");
 endButtonEl.textContent = "End Quiz";
-
-var userName
 
 
 /* choose the question to display when the next button is clicked. the option buttons are added after the
@@ -175,35 +177,45 @@ function initialQuestion() {
 }
 
 function endQuiz() {
-  quizQuestionEl.removeChild(questionEl);
-  quizQuestionEl.removeChild(optionBtnAEl);
-  quizQuestionEl.removeChild(optionBtnBEl);
-  quizQuestionEl.removeChild(optionBtnCEl);
-  quizQuestionEl.removeChild(optionBtnDEl);
+  while (quizQuestionEl.firstChild) {
+    quizQuestionEl.removeChild(quizQuestionEl.firstChild);
+  }
   quizQuestionEl.appendChild(endQuizEl);
   quizQuestionEl.appendChild(displayScoreEl);
-  // quizQuestionEl.removeChild(endButtonEl);
   quizQuestionEl.appendChild(userNameEl);
   quizQuestionEl.appendChild(submitBtnEl);
 }
 
-var saveTasks = function() {
+function saveHighScores() {
   localStorage.setItem(userName, JSON.stringify(yourScore));
-}
+};
+
 
 submitBtnEl.onclick = () => {
   userName = document.getElementById("user-name").value;
   console.log(userName);
-  saveTasks();
+  saveHighScores();
+};
+
+
+highScoreBtnEl.onclick = () => {
+  while (quizQuestionEl.firstChild) {
+    quizQuestionEl.removeChild(quizQuestionEl.firstChild);
+  }
+  var displayScoreEl = document.createElement("ul");
+  // displayScoreEl.textContent = "High Scores"
+  quizQuestionEl.appendChild(displayScoreEl)
+  var newHighScoreEl = document.createElement("li");
+  for (let i = 0; i < Object.keys(localStorage).length; i++) {
+    userName = Object.keys(localStorage)[i];
+    newHighScoreEl.textContent = userName + ": " + localStorage.getItem(userName);
+    displayScoreEl.innerHTML += " <li>" + newHighScoreEl.textContent + "</li>"
+  }
 }
 
 startButtonEl.addEventListener("click", initialQuestion);
 
 nextQuestionBtnEl.addEventListener("click", chooseQuestion);
-
-// questionEl.addEventListener("click", chooseQuestion);
-
-// endButtonEl.addEventListener("click", endQuiz);
 
 optionBtnAEl.onclick = () => {
   switch (questionEl.textContent) {
@@ -271,5 +283,3 @@ optionBtnDEl.onclick = () => {
       setTimeout(chooseQuestion, 500);
   }
 };
-
-
