@@ -190,6 +190,21 @@ function saveHighScores() {
 submitBtnEl.onclick = () => {
   userName = document.getElementById("user-name").value;
   saveHighScores();
+  while (quizQuestionEl.firstChild) {
+    quizQuestionEl.removeChild(quizQuestionEl.firstChild);
+  }
+  var displayScoreEl = document.createElement("ul");
+  quizQuestionEl.appendChild(displayScoreEl);
+
+  var newHighScoreEl = document.createElement("li");
+  console.log(localStorage.getItem(userName));
+ 
+  for (let i = 0; i < Object.keys(localStorage).length; i++) {
+    userName = Object.keys(localStorage)[i];
+    newHighScoreEl.textContent = userName + ": " + localStorage.getItem(userName);
+    displayScoreEl.innerHTML += " <li>" + newHighScoreEl.textContent + "</li>"
+  }
+  quizQuestionEl.appendChild(startButtonEl)
 };
 
 
