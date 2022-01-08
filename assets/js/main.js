@@ -229,6 +229,7 @@ submitBtnEl.onclick = () => {
 highScoreBtnEl.onclick = () => {
   while (displayQuizEl.firstChild) {
     displayQuizEl.removeChild(displayQuizEl.firstChild);
+    clearInterval(timer);
   }
   var displayScoreEl = document.createElement("ul");
   displayQuizEl.appendChild(displayScoreEl);
