@@ -71,15 +71,6 @@ userNameEl.setAttribute("id", "user-name");
 var submitBtnEl = document.createElement("input");
 submitBtnEl.setAttribute("type", "submit");
 
-var nextQuestionBtnEl = document.createElement("button");
-nextQuestionBtnEl.setAttribute("id", "btn-next");
-nextQuestionBtnEl.textContent = "Next Question";
-
-var endButtonEl = document.createElement("button");
-endButtonEl.setAttribute("id", "btn-end");
-endButtonEl.textContent = "End Quiz";
-
-
 /* choose the question to display when the next button is clicked. the option buttons are added after the
 question was chosen */
 function chooseQuestion() {
@@ -170,10 +161,14 @@ function addOptionBtn() {
 
 // used to add the question to DOM, this can potentially be added to the start button event
 function initialQuestion() {
+  while (quizQuestionEl.firstChild) {
+    quizQuestionEl.removeChild(quizQuestionEl.firstChild);
+    questionEl.textContent = ""
+    yourScore = 0;
+  }
   chooseQuestion();
   quizQuestionEl.appendChild(questionEl);
   addOptionBtn();
-  quizQuestionEl.removeChild(startButtonEl);
 }
 
 function endQuiz() {
@@ -184,6 +179,7 @@ function endQuiz() {
   quizQuestionEl.appendChild(displayScoreEl);
   quizQuestionEl.appendChild(userNameEl);
   quizQuestionEl.appendChild(submitBtnEl);
+  quizQuestionEl.appendChild(startButtonEl);
 }
 
 function saveHighScores() {
@@ -202,24 +198,23 @@ highScoreBtnEl.onclick = () => {
     quizQuestionEl.removeChild(quizQuestionEl.firstChild);
   }
   var displayScoreEl = document.createElement("ul");
-  displayScoreEl.textContent = "No Scores To Display!"
   quizQuestionEl.appendChild(displayScoreEl);
 
   var newHighScoreEl = document.createElement("li");
   console.log(localStorage.getItem(userName));
  
   for (let i = 0; i < Object.keys(localStorage).length; i++) {
-    displayScoreEl.textContent = ""
     userName = Object.keys(localStorage)[i];
     newHighScoreEl.textContent = userName + ": " + localStorage.getItem(userName);
     displayScoreEl.innerHTML += " <li>" + newHighScoreEl.textContent + "</li>"
   }
-  
+  quizQuestionEl.appendChild(startButtonEl)
+
 }
 
 startButtonEl.addEventListener("click", initialQuestion);
 
-nextQuestionBtnEl.addEventListener("click", chooseQuestion);
+// nextQuestionBtnEl.addEventListener("click", chooseQuestion);
 
 optionBtnAEl.onclick = () => {
   switch (questionEl.textContent) {

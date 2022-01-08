@@ -44,12 +44,14 @@ main h2 {
 
 #highscores {
   position: relative;
-  right: 166px;
+  right: 150px;
+  top: 10px;
   width: fit-content;
   height: 40px;
   font-size: 20px;
   margin: 4px;
   color: slateblue;
+  outline-color: slateblue;
 }
 
 .timer {
@@ -62,19 +64,20 @@ main h2 {
   margin: 4px;
 }
 
-#btn-start {
+#btn-start, #btn-restart {
   height: 30px;
   width: fit-content;
   font-size: larger;
   color: slateblue;
+  margin: 10px;
 }
 
-#btn-next {
+/* #btn-next {
   height: 30px;
   width: fit-content;
   font-size: larger;
   color: green;
-}
+} */
 
 .btn-option {
   height: 40px;
@@ -102,12 +105,12 @@ main h2 {
   background-color: red;
 }
 
-#btn-end {
+/* #btn-end {
   height: 30px;
   width: fit-content;
   font-size: larger;
   color: red;
-}
+} */
 
 .questions input {
   height: 40px;
