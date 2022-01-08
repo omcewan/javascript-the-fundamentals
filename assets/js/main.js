@@ -66,7 +66,7 @@ var highScoreBtnEl = document.querySelector("#highscores");
 
 var userNameEl = document.createElement("input");
 userNameEl.setAttribute("type", "text");
-userNameEl.setAttribute("placeholder", "Your Name");
+userNameEl.setAttribute("placeholder", "Initials");
 userNameEl.setAttribute("id", "user-name");
 userNameEl.setAttribute("onfocus", "this.value=''");
 
@@ -79,11 +79,11 @@ var count = 90;
 var timer;
 
 function countDownTimer() {
-  timerEl.innerHTML = `Time Left: ${count}`
+  timerEl.innerHTML = `Time Left: ${count}`;
   count--;
-  if (count === -1){
+  if (count === -1) {
     clearInterval(timer);
-    timerEl.innerHTML = "Time's Up!"
+    timerEl.innerHTML = "Time's Up!";
     endQuiz();
   }
 }
@@ -319,4 +319,3 @@ optionBtnDEl.onclick = () => {
       setTimeout(chooseQuestion, 250);
   }
 };
-
