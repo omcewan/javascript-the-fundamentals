@@ -64,7 +64,8 @@ main h2 {
   margin: 4px;
 }
 
-#btn-start, #btn-restart {
+#btn-start,
+#btn-restart {
   height: 30px;
   width: fit-content;
   font-size: larger;
@@ -119,8 +120,8 @@ main h2 {
   margin: 4px;
 }
 
-li, ul {
-    font-size: 24px;
-    color: slateblue;
+li,
+ul {
+  font-size: 24px;
+  color: slateblue;
 }
-
