@@ -44,7 +44,7 @@ main h2 {
 
 #highscores {
   position: relative;
-  right: 150px;
+  right: 114px;
   top: 10px;
   width: fit-content;
   height: 40px;
@@ -54,9 +54,16 @@ main h2 {
   outline-color: slateblue;
 }
 
-.timer {
+#timer {
+  height: max-content;
+  width: fit-content;
+  padding: 4px;
+  border: 1px solid;
+  margin: 16px;
+  background-color: rgba(211, 211, 211, 0.3);
+  border-radius: 1%;
   position: relative;
-  left: 150px;
+  left: 114px;
 }
 
 .questions p {

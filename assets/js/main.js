@@ -73,6 +73,21 @@ userNameEl.setAttribute("onfocus", "this.value=''");
 var submitBtnEl = document.createElement("input");
 submitBtnEl.setAttribute("type", "submit");
 
+var timerEl = document.getElementById("timer");
+
+var count = 90;
+var timer;
+
+function countDownTimer() {
+  timerEl.innerHTML = `Time Left: ${count}`
+  count--;
+  if (count === -1){
+    clearInterval(timer);
+    timerEl.innerHTML = "Time's Up!"
+    endQuiz();
+  }
+}
+
 /* choose the question to display when the next button is clicked. the option buttons are added after the
 question was chosen */
 function chooseQuestion() {
@@ -167,7 +182,9 @@ function initialQuestion() {
     displayQuizEl.removeChild(displayQuizEl.firstChild);
     questionEl.textContent = "";
     yourScore = 0;
+    count = 90;
   }
+  timer = setInterval(countDownTimer, 1000);
   chooseQuestion();
   displayQuizEl.appendChild(questionEl);
   addOptionBtn();
@@ -182,6 +199,7 @@ function endQuiz() {
   displayQuizEl.appendChild(userNameEl);
   displayQuizEl.appendChild(submitBtnEl);
   displayQuizEl.appendChild(startButtonEl);
+  clearInterval(timer);
 }
 
 function saveHighScores() {
@@ -248,6 +266,7 @@ optionBtnAEl.onclick = () => {
       break;
     default:
       optionBtnAEl.setAttribute("class", "incorrect-choice");
+      count -= 10;
       setTimeout(chooseQuestion, 350);
   }
 };
@@ -266,6 +285,7 @@ optionBtnBEl.onclick = () => {
       setTimeout(endQuiz, 350);
     default:
       optionBtnBEl.setAttribute("class", "incorrect-choice");
+      count -= 10;
       setTimeout(chooseQuestion, 350);
   }
 };
@@ -277,6 +297,7 @@ optionBtnCEl.onclick = () => {
       setTimeout(endQuiz, 350);
     default:
       optionBtnCEl.setAttribute("class", "incorrect-choice");
+      count -= 10;
       setTimeout(chooseQuestion, 350);
   }
 };
@@ -294,6 +315,8 @@ optionBtnDEl.onclick = () => {
       setTimeout(endQuiz, 350);
     default:
       optionBtnDEl.setAttribute("class", "incorrect-choice");
+      count -= 10;
       setTimeout(chooseQuestion, 250);
   }
 };
+
