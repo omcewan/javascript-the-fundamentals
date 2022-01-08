@@ -71,6 +71,11 @@ main h2 {
   margin: 4px;
 }
 
+.intro {
+  color: slateblue;
+  text-align: justify;
+}
+
 #btn-start,
 #btn-restart {
   height: 30px;
